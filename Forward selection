@@ -1,0 +1,26 @@
+# Forward-Backward-selection
+
+#forward selection
+from sklearn.linear_model import LinearRegression
+best_selected_features = []
+best_features = N
+rss_scores = {}
+for i in range(best_features):
+    
+    least_rss_score = np.inf
+    least_rss_feature = None
+    
+    for feature in data.columns.difference(best_selected_features): 
+        linreg = LinearRegression()
+        using_features = best_selected_features + [feature]
+        linreg.fit(data_train[using_featires].values, y.to_numpy()) #data is independent variables, y is dependent variable
+        prediction = linreg.predict(data_test[using_features].values)
+        prediction_rss = RSS(prediction, y_test.to_numpy())
+        
+        if least_rss_score > prediction_rss:
+            least_rss_score = prediction_rss
+            least_rss_feature = feature
+
+    best_selected_features.append(least_rss_feature)
+    rss_scores[len(best_selected_features)] = least_rss_score
+    
